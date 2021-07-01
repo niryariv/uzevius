@@ -3,7 +3,10 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "title": "כניסה לאתר",
+        "color": "black"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -14,7 +17,10 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "title": "עולים בשביל הנחש",
+        "rotation": 45
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -25,7 +31,10 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "title": "מגורי מפקד המשמר",
+        "rotation": 90
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -36,7 +45,10 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "title": "הארמון הצפוני",
+        "rotation": 0
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -47,7 +59,10 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "title": "בית הכנסת",
+        "rotation": 270
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -58,7 +73,10 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "title": " בריכת השחיה",
+        "rotation": 180
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
