@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+#info {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: #222;
+    background: #fff;
+}
+
+
+/* #map {
+    height: 100%; width: 100vw;
+}
+
+*:focus {
+    outline: 0;
+}
+
+.leaflet-popup-content-wrapper {
+    direction: rtl;
+    font-size:16px;
+    line-height:24px;
+    text-align: right;
+} */
+
+.title {
+    font-weight: bold;
+}
+
+.nav-link {
+    text-align: center;
+}
+
+.icon-image {
+    background-color: #fff;
+    padding: 4px;
+    border-radius:50px;
+}
