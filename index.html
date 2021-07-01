@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="manifest" href="/assets/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/fav/favicon-16x16.png">
+    <link rel="manifest" href="/assets/fav/site.webmanifest">
 
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://cdn.maptiler.com/maplibre-gl-js/v1.14.0/maplibre-gl.js"></script>
@@ -22,37 +22,8 @@
     <pre id="info"></pre>
     <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a
             href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
-    <script>
-        maplibregl.setRTLTextPlugin('https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js');
-        var map = new maplibregl.Map({
-            container: 'map',
-            style: 'https://api.maptiler.com/maps/topo/style.json?key=cgzcpq242p8x5zNNGxpx',
-            // center: [0,0],
-            // zoom: 0
-            center: [35.358, 31.316],
-            maxBounds: [[35.3334, 31.3029], [35.3729, 31.3317]],
-            zoom: 15
-
-        });
-
-        // map.LngLatBounds();
-
-        map.on('click', function (e) {
-            document.getElementById('info').innerHTML =
-                // e.point is the x, y coordinates of the mousemove event relative
-                // to the top-left corner of the map
-                JSON.stringify(e.point) +
-                '<br />' +
-                // e.lngLat is the longitude, latitude geographical position of the event
-                JSON.stringify(e.lngLat.wrap());
-                console.log(e.lngLat)
-            });
-
-        // map.flyTo({
-        //     center: [35.358, 31.316],
-        //     zoom: 15
-        // })
-    </script>
+    <script src="code.js"></script>
+    
 </body>
 
 </html>
