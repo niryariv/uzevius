@@ -57,6 +57,23 @@
 
     <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a
             href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+    
+    <script>
+        window.addEventListener('load', e => {
+            registerSW();
+        });
+        async function registerSW() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    await navigator.serviceWorker.register('./sw.js');
+                } catch (e) {
+                    alert('ServiceWorker registration failed. Sorry about that.');
+                }
+            } else {
+                document.querySelector('.alert').removeAttribute('hidden');
+            }
+        }
+    </script>
     <script src="code.js"></script>
     
 </body>
