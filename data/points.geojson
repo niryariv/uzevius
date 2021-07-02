@@ -5,7 +5,8 @@
       "type": "Feature",
       "properties": {
         "title": "כניסה לאתר",
-        "color": "black"
+        "color": "black",
+        "vimeo": "48169157"
       },
       "geometry": {
         "type": "Point",
@@ -19,7 +20,8 @@
       "type": "Feature",
       "properties": {
         "title": "עולים בשביל הנחש",
-        "rotation": 45
+        "rotation": 45,
+        "vimeo": "134929132"
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +35,8 @@
       "type": "Feature",
       "properties": {
         "title": "מגורי מפקד המשמר",
-        "rotation": 90
+        "rotation": 90,
+        "vimeo": "5922384"
       },
       "geometry": {
         "type": "Point",
@@ -47,7 +50,8 @@
       "type": "Feature",
       "properties": {
         "title": "הארמון הצפוני",
-        "rotation": 0
+        "rotation": 0,
+        "vimeo": "191039746"
       },
       "geometry": {
         "type": "Point",
@@ -61,7 +65,8 @@
       "type": "Feature",
       "properties": {
         "title": "בית הכנסת",
-        "rotation": 270
+        "rotation": 270,
+        "vimeo": "104030094"
       },
       "geometry": {
         "type": "Point",
@@ -75,7 +80,8 @@
       "type": "Feature",
       "properties": {
         "title": " בריכת השחיה",
-        "rotation": 180
+        "rotation": 180,
+        "vimeo": "11753317" 
       },
       "geometry": {
         "type": "Point",
