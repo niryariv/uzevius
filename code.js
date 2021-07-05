@@ -51,24 +51,16 @@ $(document).ready(function () {
         function render_point(p){
             console.log(p);
             var lnglat = p.geometry.coordinates;
-            var rotation = p.properties.rotation || 0;
+            var rotation = 0; // ignore rotation for images p.properties.rotation || 0;
             var color = p.properties.color || '#bbdaf9';
             var title = p.properties.title;
             var video_src = 'https://player.vimeo.com/video/'+ p.properties.vimeo +'?autoplay=1&title=0&byline=0&portrait=0'; //'https://player.vimeo.com/video/5922384?title=0&byline=0&portrait=0';
 
-            // var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-            // var popupOffsets = {
-            //     'top': [-100, -100],
-            //     'top-left': [-100, -100],
-            //     'top-right': [0, 0],
-            //     'bottom': [0, -markerHeight],
-            //     'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            //     'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            //     'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            //     'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-            // };
+            el = document.createElement('div');
+            el.className = 'image_marker';
+            el.style.backgroundImage = 'url('+ p.properties.image +')';
 
-            var marker = new maplibregl.Marker({ color: color, rotation: rotation })
+            var marker = new maplibregl.Marker({ element: el, color: color, rotation: rotation })
                 .setLngLat(lnglat)
                 .setPopup(
                     new maplibregl.Popup({ 

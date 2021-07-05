@@ -6,7 +6,8 @@
       "properties": {
         "title": "כניסה לאתר",
         "color": "black",
-        "vimeo": "48169157"
+        "vimeo": "48169157",
+        "image": "./data/img/masada_entrance.jpg"
       },
       "geometry": {
         "type": "Point",
@@ -21,7 +22,8 @@
       "properties": {
         "title": "עולים בשביל הנחש",
         "rotation": 45,
-        "vimeo": "134929132"
+        "vimeo": "134929132",
+        "image": "./data/img/snake_trail.jpg"
       },
       "geometry": {
         "type": "Point",
@@ -36,7 +38,8 @@
       "properties": {
         "title": "מגורי מפקד המשמר",
         "rotation": 90,
-        "vimeo": "5922384"
+        "vimeo": "5922384",
+        "image": "./data/img/mishmar.jpg"
       },
       "geometry": {
         "type": "Point",
@@ -51,7 +54,8 @@
       "properties": {
         "title": "הארמון הצפוני",
         "rotation": 0,
-        "vimeo": "191039746"
+        "vimeo": "191039746",
+        "image": "./data/img/north_palace.jpg"
       },
       "geometry": {
         "type": "Point",
@@ -66,7 +70,8 @@
       "properties": {
         "title": "בית הכנסת",
         "rotation": 270,
-        "vimeo": "104030094"
+        "vimeo": "104030094",
+        "image": "./data/img/synagogue.jpg"
       },
       "geometry": {
         "type": "Point",
@@ -81,7 +86,8 @@
       "properties": {
         "title": " בריכת השחיה",
         "rotation": 180,
-        "vimeo": "11753317" 
+        "vimeo": "11753317",
+        "image": "./data/img/pool.jpg"
       },
       "geometry": {
         "type": "Point",

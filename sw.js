@@ -1,3 +1,5 @@
+// https://vaadin.com/learn/tutorials/learn-pwa/turn-website-into-a-pwa
+
 self.addEventListener('install', async event => {
     console.log('SW install');
     const cache = await caches.open(cacheName);
