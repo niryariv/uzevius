@@ -23,19 +23,33 @@ $(document).ready(function () {
         // maxBounds: [[35.33, 31.3], [35.38, 31.34]],
     });
 
+    var geolocate = new maplibregl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    });
+    map.addControl(geolocate);
+    
+    // var nav = new maplibregl.NavigationControl();
+    // map.addControl(nav, 'top-left');
+
     map.on('load', function(e){
         // map.addSource('points', {
         //     'type': 'geojson',
         //     'data': './data/points.geojson'
         // });
 
-        map.loadImage(
-            'https://maplibre.org/maplibre-gl-js-docs/assets/custom_marker.png',
-            function (error, image) {
-                if (error) throw error;
-                map.addImage('custom-marker', image);
-            }
-        ); 
+        // map.loadImage(
+        //     'https://maplibre.org/maplibre-gl-js-docs/assets/custom_marker.png',
+        //     function (error, image) {
+        //         if (error) throw error;
+        //         map.addImage('custom-marker', image);
+        //     }
+        // ); 
+
+        geolocate.trigger();
+
 
         $.getJSON("./data/negev.geojson", function() {
             console.log("loaded");
