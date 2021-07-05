@@ -55,7 +55,8 @@ $(document).ready(function () {
             var rotation = 0; // ignore rotation for images p.properties.rotation || 0;
             var color = p.properties.color || '#bbdaf9';
             var title = p.properties.title;
-            var video_src = 'https://player.vimeo.com/video/'+ p.properties.vimeo +'?autoplay=1&title=0&byline=0&portrait=0'; //'https://player.vimeo.com/video/5922384?title=0&byline=0&portrait=0';
+            var video_src = p.properties.youtube;
+                // 'https://player.vimeo.com/video/'+ p.properties.vimeo +'?autoplay=1&title=0&byline=0&portrait=0'; //'https://player.vimeo.com/video/5922384?title=0&byline=0&portrait=0';
 
             el = document.createElement('div');
             el.className = 'image_marker';
@@ -76,9 +77,15 @@ $(document).ready(function () {
                             center: currentFeature.target.getLngLat(),
                             zoom: 15
                         });
-                        $('#video').attr('src', video_src);
-                        $("#video_title").html(title)
-                        video_modal.show()
+                        $.magnificPopup.open({
+                            "items": { 
+                                "src": video_src 
+                            }, 
+                            "type": "iframe"
+                        });
+                        // $('#video').attr('src', video_src);
+                        // $("#video_title").html(title)
+                        // video_modal.show()
                     })
                 ).addTo(map);
         }

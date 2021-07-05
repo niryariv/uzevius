@@ -5,7 +5,7 @@
             "type": "Feature",
             "properties": {
                 "title": "אנדרטת חטיבת הנגב",
-                "youtube": "Iu-yn8fMaFE",
+                "youtube": "https://www.youtube.com/watch?v=Iu-yn8fMaFE",
                 "image": "./data/img/negev_brigade.jpg"
             },
             "geometry": {
@@ -20,7 +20,7 @@
             "type": "Feature",
             "properties": {
                 "title": "אנדרטת הקומנדו הצרפתי",
-                "youtube": "sA1wUGSs_2I",
+                "youtube": "https://www.youtube.com/watch?v=sA1wUGSs_2I",
                 "image": "./data/img/commando_monument.jpg"
             },
             "geometry": {
@@ -50,7 +50,7 @@
             "type": "Feature",
             "properties": {
                 "title": "צומת אהלים",
-                "youtube": "5OIM3lFYNiE",
+                "youtube": "https://www.youtube.com/watch?v=5OIM3lFYNiE",
                 "image": "./data/img/ohalim.jpg"
             },
             "geometry": {
@@ -66,7 +66,7 @@
             "properties": {
                 "title": "מצפור טלי",
                 "rotation": 270,
-                "youtube": "NDrBCVc9BXM",
+                "youtube": "https://www.youtube.com/watch?v=NDrBCVc9BXM",
                 "image": "./data/img/tali.jpg"
             },
             "geometry": {
@@ -82,7 +82,7 @@
             "properties": {
                 "title": "מצפור הקומנדו הצרפתי",
                 "rotation": 180,
-                "youtube": "OC8OJu7lla0",
+                "youtube": "https://www.youtube.com/watch?v=OC8OJu7lla0",
                 "image": "./data/img/commando_lookout.jpg"
             },
             "geometry": {
@@ -98,7 +98,7 @@
             "properties": {
                 "title": "גשר הרכבת הטורקי",
                 "rotation": 180,
-                "youtube": "vwBf-5Jzp3c",
+                "youtube": "https://www.youtube.com/watch?v=vwBf-5Jzp3c",
                 "image": "./data/img/bridge.jpg"
             },
             "geometry": {
@@ -113,7 +113,7 @@
             "type": "Feature",
             "properties": {
                 "title": "בית העלמין הצבאי בקיבוץ רביבים",
-                "youtube": "W9-NwkrTCqA",
+                "youtube": "https://www.youtube.com/watch?v=W9-NwkrTCqA",
                 "image": "./data/img/revivim.jpg"
             },
             "geometry": {
