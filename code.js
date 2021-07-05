@@ -18,11 +18,9 @@ $(document).ready(function () {
         container: 'map',
         style: 'https://api.maptiler.com/maps/topo/style.json?key=cgzcpq242p8x5zNNGxpx',
         // center: [0,0],
-        // zoom: 0
-        // center: [35.358, 31.316],
+        zoom: 7,
+        center: [34.102, 30.935],
         // maxBounds: [[35.33, 31.3], [35.38, 31.34]],
-        zoom: 15
-
     });
 
     map.on('load', function(e){
@@ -43,7 +41,10 @@ $(document).ready(function () {
             console.log("loaded");
         }).done(function(d){
             console.log(d);
-            map.flyTo({center: d.features[0].geometry.coordinates});
+            map.flyTo({
+                center: d.features[0].geometry.coordinates,
+                zoom: 15
+            });
             d.features.forEach(function (f) {
                 render_point(f);
             });        
