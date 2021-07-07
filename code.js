@@ -10,12 +10,12 @@ $(document).ready(function () {
 
     // Sentry.captureMessage("Sentry On");
 
-    video_modal = new bootstrap.Modal(document.getElementById('video_modal'))
+    // video_modal = new bootstrap.Modal(document.getElementById('video_modal'))
     // stop video when the modal is closed
-    $('#video_modal').on('hide.bs.modal', function (e) {
-        // a poor man's stop video
-        $("#video").attr('src', '');
-    });
+    // $('#video_modal').on('hide.bs.modal', function (e) {
+    //     // a poor man's stop video
+    //     $("#video").attr('src', '');
+    // });
 
 
     maplibregl.setRTLTextPlugin(
@@ -30,6 +30,7 @@ $(document).ready(function () {
         // center: [0,0],
         zoom: 7,
         center: [34.102, 30.935],
+        customAttribution: "v7.7"
         // maxBounds: [[35.33, 31.3], [35.38, 31.34]],
     });
 
