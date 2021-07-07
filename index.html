@@ -5,6 +5,10 @@
 
     <link rel="manifest" href="./manifest.json">
 
+    <script src="https://browser.sentry-cdn.com/6.8.0/bundle.min.js"
+        integrity="sha384-a1zd+NHj/GIqnlXIHuEKFontqYxBdK9Zwslrvnhr1KfU9tBDzKbM55gQFXlHYDiD"
+        crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -30,7 +34,7 @@
     <link href="https://cdn.maptiler.com/maplibre-gl-js/v1.14.0/maplibre-gl.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style.css">   
 
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
 </head>
 
 <body>
@@ -63,6 +67,14 @@
     <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a
             href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
     
+    <script>
+    Sentry.init({
+        dsn: "https://eec507480d9449bd8a33698b709dcb35@o914112.ingest.sentry.io/5852590",
+        integrations: [new Integrations.BrowserTracing()],
+        tracesSampleRate: 1.0,
+    });
+    </script>
+
     <script>
         window.addEventListener('load', e => {
             registerSW();

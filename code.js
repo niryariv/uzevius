@@ -1,3 +1,5 @@
+var Markers = {};
+
 $(document).ready(function () {
 
     video_modal = new bootstrap.Modal(document.getElementById('video_modal'))
@@ -35,18 +37,6 @@ $(document).ready(function () {
     // map.addControl(nav, 'top-left');
 
     map.on('load', function(e){
-        // map.addSource('points', {
-        //     'type': 'geojson',
-        //     'data': './data/points.geojson'
-        // });
-
-        // map.loadImage(
-        //     'https://maplibre.org/maplibre-gl-js-docs/assets/custom_marker.png',
-        //     function (error, image) {
-        //         if (error) throw error;
-        //         map.addImage('custom-marker', image);
-        //     }
-        // ); 
 
         geolocate.trigger();
 
