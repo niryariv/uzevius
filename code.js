@@ -2,6 +2,14 @@ var Markers = {};
 
 $(document).ready(function () {
 
+    // Sentry.init({
+    //     dsn: "https://eec507480d9449bd8a33698b709dcb35@o914112.ingest.sentry.io/5852590",
+    //     integrations: [new Integrations.BrowserTracing()],
+    //     tracesSampleRate: 1.0,
+    // });
+
+    // Sentry.captureMessage("Sentry On");
+
     video_modal = new bootstrap.Modal(document.getElementById('video_modal'))
     // stop video when the modal is closed
     $('#video_modal').on('hide.bs.modal', function (e) {
@@ -32,6 +40,7 @@ $(document).ready(function () {
         trackUserLocation: true
     });
     map.addControl(geolocate);
+
     
     // var nav = new maplibregl.NavigationControl();
     // map.addControl(nav, 'top-left');
