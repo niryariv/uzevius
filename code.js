@@ -43,9 +43,7 @@ $(document).ready(function () {
 
     geolocate.on('error', function (e) {
         console.log('geolocate error', e);
-        $('#info').html(e.message);
-        $('#info').show();
-        // document.getElementById('info').innerHTML = e.message;
+        $('#info').html(e.message).show();
     });
 
     map.addControl(geolocate);
