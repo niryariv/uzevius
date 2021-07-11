@@ -10,12 +10,6 @@ $(document).ready(function () {
 
     // Sentry.captureMessage("Sentry On");
 
-    // video_modal = new bootstrap.Modal(document.getElementById('video_modal'))
-    // stop video when the modal is closed
-    // $('#video_modal').on('hide.bs.modal', function (e) {
-    //     // a poor man's stop video
-    //     $("#video").attr('src', '');
-    // });
 
 
     maplibregl.setRTLTextPlugin(
@@ -29,10 +23,11 @@ $(document).ready(function () {
         style: 'https://api.maptiler.com/maps/topo/style.json?key=cgzcpq242p8x5zNNGxpx',
         // center: [0,0],
         zoom: 7,
-        center: [34.102, 30.935],
-        customAttribution: "v7.7"
+        // center: [34.102, 30.935],
+        customAttribution: "v11.7.0"
         // maxBounds: [[35.33, 31.3], [35.38, 31.34]],
     });
+
 
     var geolocate = new maplibregl.GeolocateControl({
         positionOptions: {
@@ -57,10 +52,18 @@ $(document).ready(function () {
         geolocate.trigger();
 
 
-        $.getJSON("./data/negev.geojson", function() {
+        $.ajaxSetup({
+            scriptCharset: "utf-8",
+            contentType: "application/json; charset=utf-8"
+        });
+
+        $.getJSON("./data/negev.geojson", function(e) {
             console.log("loaded");
+        }).fail(function (e) {
+            console.log(e);
         }).done(function(d){
             console.log(d);
+            debugger;
             map.flyTo({
                 center: d.features[0].geometry.coordinates,
                 zoom: 15
@@ -104,46 +107,8 @@ $(document).ready(function () {
                             }, 
                             "type": "iframe"
                         });
-                        // $('#video').attr('src', video_src);
-                        // $("#video_title").html(title)
-                        // video_modal.show()
                     })
                 ).addTo(map);
         }
-
-
-        // map.addLayer({
-        //     'id': 'points',
-        //     'type': 'symbol',
-        //     'source': 'points',
-        //     'layout': {
-        //         'icon-image': 'custom-marker',
-        //         // get the title name from the source's "title" property
-        //         'text-field': ['get', 'title'],
-        //         'text-font': [
-        //             'Open Sans Semibold',
-        //             'Arial Unicode MS Bold'
-        //         ],
-        //         'text-offset': [0, 1.25],
-        //         'text-anchor': 'top'
-        //     }
-        // });
-
     });
-
-    // map.on('click', function (e) {
-    //     document.getElementById('info').innerHTML =
-    //         // e.point is the x, y coordinates of the mousemove event relative
-    //         // to the top-left corner of the map
-    //         JSON.stringify(e.point) +
-    //         '<br />' +
-    //         // e.lngLat is the longitude, latitude geographical position of the event
-    //         JSON.stringify(e.lngLat.wrap());
-    //         console.log(e.lngLat);
-    // });
-
-    // map.flyTo({
-    //     center: [35.358, 31.316],
-    //     zoom: 15
-    // })
 })

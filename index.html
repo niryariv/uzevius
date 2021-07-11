@@ -9,9 +9,9 @@
     <!-- <script src="https://browser.sentry-cdn.com/6.8.0/bundle.tracing.min.js"
         CCCintegrity="sha384-PEpz3oi70IBfja8491RPjqj38s8lBU9qHRh+tBurFb6XNetbdvlRXlshYnKzMB0U"
         crossorigin="anonymous"></script> -->
-
+<!-- 
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
+    <script>eruda.init();</script> -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -34,37 +34,20 @@
     <!-- <link rel="manifest" href="./assets/fav/site.webmanifest"> -->
 
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <script src="https://cdn.maptiler.com/maplibre-gl-js/v1.14.0/maplibre-gl.js"></script>
-    <link href="https://cdn.maptiler.com/maplibre-gl-js/v1.14.0/maplibre-gl.css" rel="stylesheet" />
+
+    <script src='https://unpkg.com/maplibre-gl@1.15.0/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@1.15.0/dist/maplibre-gl.css' rel='stylesheet' />
+
+    <!-- <script src="https://cdn.maptiler.com/maplibre-gl-js/v1.14.0/maplibre-gl.js"></script>
+    <link href="https://cdn.maptiler.com/maplibre-gl-js/v1.14.0/maplibre-gl.css" rel="stylesheet" /> -->
     <link rel="stylesheet" type="text/css" href="style.css">   
 
-    <!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
 </head>
 
 <body>
     <div id="map">
     </div>
     <pre id="info"></pre>
-
-    <!-- <div class="modal" tabindex="-1" id="video_modal">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="video_title"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div style="padding:56.25% 0 0 0;position:relative;" class="embed-responsive embed-responsive-16by9">
-                        <iframe id="video" class="embed-responsive-item"
-                            src="https://player.vimeo.com/video/5922384?title=0&byline=0&portrait=0"
-                            style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <script>
         window.addEventListener('load', e => {
