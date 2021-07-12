@@ -59,6 +59,15 @@ $(document).ready(function () {
             });        
         })
 
+        geolocate.on('geolocate', (e) => {
+            heading = e.coords.heading
+            console.log(heading);
+            if (heading != null) {
+                map.bearing = heading;
+            }
+        });
+
+
         function render_point(p){
             // console.log(p);
             var lnglat = p.geometry.coordinates;
