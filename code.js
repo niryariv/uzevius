@@ -63,7 +63,7 @@ $(document).ready(function () {
             heading = e.coords.heading
             console.log(heading);
             if (heading != null) {
-                map.bearing = heading;
+                map.setBearing(heading);
             }
         });
 
@@ -103,7 +103,7 @@ $(document).ready(function () {
                             "type": "iframe"
                         });
                     })
-                ).addTo(map);
+            ).addTo(map);
         }
     });
 })
