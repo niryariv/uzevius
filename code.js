@@ -61,8 +61,8 @@ $(document).ready(function () {
 
         geolocate.on('geolocate', (e) => {
             heading = e.coords.heading
-            console.log(heading);
             if (heading != null) {
+                console.log("bearing:", heading)
                 map.setBearing(heading);
             }
         });
