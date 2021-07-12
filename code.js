@@ -59,13 +59,14 @@ $(document).ready(function () {
             });        
         })
 
-        geolocate.on('geolocate', (e) => {
-            heading = e.coords.heading
-            if (heading != null) {
-                console.log("bearing:", heading)
-                map.setBearing(heading);
-            }
-        });
+        // disable for now
+        // geolocate.on('geolocate', (e) => {
+        //     heading = e.coords.heading
+        //     if (heading != null) {
+        //         console.log("bearing:", heading)
+        //         map.setBearing(heading);
+        //     }
+        // });
 
 
         function render_point(p){
