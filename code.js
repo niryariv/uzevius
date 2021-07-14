@@ -11,7 +11,7 @@ $(document).ready(function () {
         style: 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
         zoom: 10,
         // center: [34.102, 30.935],
-        customAttribution: "v14.7.2",
+        customAttribution: "v14.7.3",
         maxBounds: [[34, 29], [36, 33]]
     });
 

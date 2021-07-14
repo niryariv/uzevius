@@ -35,7 +35,7 @@
             "type": "Feature",
             "properties": {
                 "title": "גן אלנבי",
-                "vimeo": "5922384",
+                "youtube": "https://www.youtube.com/watch?v=6Lzc7Npt_Ic",
                 "image": "./data/img/allenby.jpg"
             },
             "geometry": {
