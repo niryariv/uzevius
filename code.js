@@ -8,10 +8,10 @@ $(document).ready(function () {
 
     var map = new maplibregl.Map({
         container: 'map',
-        style: 'https://api.maptiler.com/maps/topo/style.json?key=cgzcpq242p8x5zNNGxpx',
+        style: 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
         zoom: 10,
         // center: [34.102, 30.935],
-        customAttribution: "v11.7.1",
+        customAttribution: "v14.7.0",
         maxBounds: [[34, 29], [36, 33]]
     });
 
@@ -36,7 +36,8 @@ $(document).ready(function () {
 
     map.on('load', function(e){
 
-        geolocate.trigger();
+        // don't fly to user location on load
+        // geolocate.trigger();
 
 
         $.ajaxSetup({
@@ -52,7 +53,7 @@ $(document).ready(function () {
             console.log(d);
             map.flyTo({
                 center: d.features[0].geometry.coordinates,
-                zoom: 15
+                zoom: 8
             });
             d.features.forEach(function (f) {
                 render_point(f);
