@@ -51,7 +51,7 @@
             "properties": {
                 "title": "צומת אהלים",
                 "youtube": "https://www.youtube.com/watch?v=5OIM3lFYNiE",
-                "image": "./data/img/ohalim.jpg"
+                "image": "./data/img/ohalim.png"
             },
             "geometry": {
                 "type": "Point",
@@ -99,7 +99,7 @@
                 "title": "גשר הרכבת הטורקי",
                 "rotation": 180,
                 "youtube": "https://www.youtube.com/watch?v=vwBf-5Jzp3c",
-                "image": "./data/img/bridge.jpg"
+                "image": "./data/img/bridge.png"
             },
             "geometry": {
                 "type": "Point",
