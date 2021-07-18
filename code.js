@@ -10,7 +10,6 @@ class BaseMapControl {
         this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group style-switcher style-switcher-satellite';
         this._container.addEventListener('click', function(e) {
             var curstyle = map.getStyle().name;
-            console.log("curstyle", curstyle)
             if (curstyle == 'Streets') {
                 e.target.classList.remove('style-switcher-satellite');
                 e.target.classList.add('style-switcher-streets');
@@ -20,7 +19,6 @@ class BaseMapControl {
                 e.target.classList.add('style-switcher-satellite');
                 map.setStyle(STYLE.STREETS);    
             }
-            console.log('click on map', );
         });
       return this._container;
     }
