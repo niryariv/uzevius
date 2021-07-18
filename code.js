@@ -1,11 +1,26 @@
+const STYLE = {
+    'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
+    'SAT' : 'https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx'
+}
+
 class BaseMapControl {
     onAdd(map) {
         this._map = map;
         this._container = document.createElement('div');
-        this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group style-switcher';
+        this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group style-switcher style-switcher-satellite';
         this._container.addEventListener('click', function(e) {
-            console.log('click on map');
-            map.setStyle('https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx');
+            var curstyle = map.getStyle().name;
+            console.log("curstyle", curstyle)
+            if (curstyle == 'Streets') {
+                e.target.classList.remove('style-switcher-satellite');
+                e.target.classList.add('style-switcher-streets');
+                map.setStyle(STYLE.SAT);    
+            } else {
+                e.target.classList.remove('style-switcher-streets');
+                e.target.classList.add('style-switcher-satellite');
+                map.setStyle(STYLE.STREETS);    
+            }
+            console.log('click on map', );
         });
       return this._container;
     }
@@ -28,8 +43,7 @@ $(document).ready(function () {
 
     var map = new maplibregl.Map({
         container: 'map',
-        style: 'https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx',
-                // 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx'],
+        style: STYLE.STREETS,
         zoom: 10,
         // center: [34.102, 30.935],
         customAttribution: "v18.7.0",
