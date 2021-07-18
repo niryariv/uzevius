@@ -1,4 +1,24 @@
+class BaseMapControl {
+    onAdd(map) {
+        this._map = map;
+        this._container = document.createElement('div');
+        this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group style-switcher';
+        this._container.addEventListener('click', function(e) {
+            console.log('click on map');
+            map.setStyle('https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx');
+        });
+      return this._container;
+    }
+    
+
+    onRemove() {
+        this._container.parentNode.removeChild(this._container);
+        this._map = undefined;
+    }
+}
+
 $(document).ready(function () {
+
 
     maplibregl.setRTLTextPlugin(
         'https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js',
@@ -8,14 +28,19 @@ $(document).ready(function () {
 
     var map = new maplibregl.Map({
         container: 'map',
-        style: 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
+        style: 'https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx',
+                // 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx'],
         zoom: 10,
         // center: [34.102, 30.935],
-        customAttribution: "v14.7.3",
+        customAttribution: "v18.7.0",
         maxBounds: [[34, 29], [36, 33]]
     });
 
 
+    var basemap = new BaseMapControl();
+    map.addControl(basemap, 'bottom-left');
+
+    
     var geolocate = new maplibregl.GeolocateControl({
         positionOptions: {
             enableHighAccuracy: true
