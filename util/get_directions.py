@@ -1,13 +1,21 @@
 # get directions from mapbox directions API
+# USAGE
+# 
+# python3 get_directions.py ../data/negev.geojson
+# 
+# OUTPUT:
+# GeoJSON linestring of the route
 
-import json, requests
+import json, requests, sys
 
 
-token = 'pk.eyJ1IjoibmlyeWFyaXYiLCJhIjoiQjdJeWdqZyJ9.pZOwn6stABGoptmp0DH1wg'
+token = 'pk.eyJ1IjoibmlyeWFyaXYiLCJhIjoiY2tyYXcxbmR3NDZrbDJybngwZm04bTlyZyJ9.RXiAIEMyB7JGLpEVyRl9nQ'
 alts = 'false'
 steps = 'false'
 
-f = open ('../data/negev.geojson',)
+poi_file = sys.argv[1]
+
+f = open (poi_file,) 
 
 data = json.load(f)
 coords = ''
@@ -21,10 +29,7 @@ coords = coords[:-1]
 
 url = f'https://api.mapbox.com/directions/v5/mapbox/driving/{coords}?alternatives={alts}&geometries=geojson&steps={steps}&access_token={token}' 
 
-print(url)
-
 resp = requests.get(url).json()
+
 route = resp['routes'][0]['geometry']
-
-print(route)
-
+print(json.dumps(route))
