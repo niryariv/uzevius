@@ -1,6 +1,6 @@
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
-    'SAT' : 'https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx'
+    'SAT': 'mapbox://styles/niryariv/cjamccmte0z492so572ynsqt1'//https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx'
 }
 
 class BaseMapControl {
@@ -33,6 +33,7 @@ class BaseMapControl {
 
 $(document).ready(function () {
 
+    maplibregl.accessToken = 'pk.eyJ1IjoibmlyeWFyaXYiLCJhIjoiY2tyZG9wdGdqNWRzZTJwcXB0bDhwMDI0MSJ9._9l-xyh11DZVRuQCAwtcZg'
 
     maplibregl.setRTLTextPlugin(
         'https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js',
@@ -45,7 +46,7 @@ $(document).ready(function () {
         style: STYLE.STREETS,
         zoom: 10,
         center: [34.102, 30.935],
-        customAttribution: "v21.07.0",
+        customAttribution: "v21.07.1",
         maxBounds: [[34, 29], [36, 33]]
     });
 
