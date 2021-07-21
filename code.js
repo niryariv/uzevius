@@ -155,7 +155,7 @@ $(document).ready(function () {
         if (typeof map.getSource('route') === 'undefined') {
             map.addSource('route', {
                 type: "geojson",
-                data: "../data/negev_route.geojson"
+                data: "./data/negev_route.geojson"
             })
         }
         
