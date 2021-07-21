@@ -45,7 +45,7 @@ $(document).ready(function () {
         style: STYLE.STREETS,
         zoom: 10,
         center: [34.102, 30.935],
-        customAttribution: "v18.7.0",
+        customAttribution: "v21.07.0",
         maxBounds: [[34, 29], [36, 33]]
     });
 
