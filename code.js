@@ -30,6 +30,7 @@ class BaseMapControl {
     }
 }
 
+
 $(document).ready(function () {
 
 
@@ -43,14 +44,11 @@ $(document).ready(function () {
         container: 'map',
         style: STYLE.STREETS,
         zoom: 10,
-        // center: [34.102, 30.935],
+        center: [34.102, 30.935],
         customAttribution: "v18.7.0",
         maxBounds: [[34, 29], [36, 33]]
     });
 
-
-    var basemap = new BaseMapControl();
-    map.addControl(basemap, 'bottom-left');
 
     
     var geolocate = new maplibregl.GeolocateControl({
@@ -67,15 +65,12 @@ $(document).ready(function () {
 
     map.addControl(geolocate);
 
-    
-    // var nav = new maplibregl.NavigationControl();
-    // map.addControl(nav, 'top-left');
-
     map.on('load', function(e){
 
         // don't fly to user location on load
         // geolocate.trigger();
 
+        console.log(map)
 
         $.ajaxSetup({
             scriptCharset: "utf-8",
@@ -96,6 +91,9 @@ $(document).ready(function () {
                 render_point(f);
             });        
         })
+
+        
+        
 
         // disable for now
         // geolocate.on('geolocate', (e) => {
@@ -144,5 +142,40 @@ $(document).ready(function () {
                     })
             ).addTo(map);
         }
+
+        var basemap = new BaseMapControl();
+        map.addControl(basemap, 'bottom-left');
+
+
     });
+
+
+    // Redraw layers when changing basemap
+    map.on('styledata', function(e){
+        if (typeof map.getSource('route') === 'undefined') {
+            map.addSource('route', {
+                type: "geojson",
+                data: "../data/negev_route.geojson"
+            })
+        }
+        
+        if (typeof map.getLayer('route') === 'undefined') {
+            map.addLayer({
+                id: "route",
+                source: "route",
+                type: "line",
+                paint: {
+                    "line-color": "#2080ff",
+                    "line-width": 3,
+                    "line-gap-width": 1
+                },
+                layout: {
+                    "line-cap": "round",
+                    "line-join": "round"
+                }
+            })
+        }
+
+    })
+
 })
