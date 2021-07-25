@@ -19,7 +19,7 @@ const STYLE = {
         style: STYLE.STREETS,
         zoom: 10,
         center: [34.102, 30.935],
-        customAttribution: "v21.07.1",
+        customAttribution: "v25.07.2",
         maxBounds: [[34, 29], [36, 33]]
     });
 
@@ -41,14 +41,14 @@ const STYLE = {
 
     var _lastpos=[];
     geolocate.on('geolocate', function (l) {
-        // loc = [l.coords.longitude, l.coords.latitude]
+        loc = [l.coords.longitude, l.coords.latitude]
         if ((JSON.stringify(loc) == JSON.stringify(_lastpos))) {
             // user didn't move
             // console.log("same place");
         } else {
             // user moved to a new location
             // console.log('the user is at', loc);
-            trigger_nearby_marker(loc, 10);
+            trigger_nearby_marker(loc, 5);
             _lastpos = loc;
         }
     });
