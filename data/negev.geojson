@@ -138,6 +138,21 @@
                     31.256324969953184
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "נקודת בדיקה לאורי",
+                "youtube": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "image": "./data/img/minsker.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.213394,
+                    31.763908
+                ]
+            }
         }
     ]
 }
