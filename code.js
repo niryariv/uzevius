@@ -3,38 +3,11 @@ const STYLE = {
     'SAT': 'mapbox://styles/niryariv/cjamccmte0z492so572ynsqt1'//https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx'
 }
 
-class BaseMapControl {
-    onAdd(map) {
-        this._map = map;
-        this._container = document.createElement('div');
-        this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group style-switcher style-switcher-satellite';
-        this._container.addEventListener('click', function(e) {
-            var curstyle = map.getStyle().name;
-            if (curstyle == 'Streets') {
-                e.target.classList.remove('style-switcher-satellite');
-                e.target.classList.add('style-switcher-streets');
-                map.setStyle(STYLE.SAT);    
-            } else {
-                e.target.classList.remove('style-switcher-streets');
-                e.target.classList.add('style-switcher-satellite');
-                map.setStyle(STYLE.STREETS);    
-            }
-        });
-      return this._container;
-    }
-    
 
-    onRemove() {
-        this._container.parentNode.removeChild(this._container);
-        this._map = undefined;
-    }
-}
+// $(document).ready(function () {
 
-
-$(document).ready(function () {
-
+    // setup map
     maplibregl.accessToken = 'pk.eyJ1IjoibmlyeWFyaXYiLCJhIjoiY2tyZG9wdGdqNWRzZTJwcXB0bDhwMDI0MSJ9._9l-xyh11DZVRuQCAwtcZg'
-
     maplibregl.setRTLTextPlugin(
         'https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js',
         null,
@@ -50,8 +23,10 @@ $(document).ready(function () {
         maxBounds: [[34, 29], [36, 33]]
     });
 
+    var POIS = [];
 
     
+    // setup geolocation UI
     var geolocate = new maplibregl.GeolocateControl({
         positionOptions: {
             enableHighAccuracy: true
@@ -64,14 +39,76 @@ $(document).ready(function () {
         $('#info').html(e.message).show();
     });
 
+    var _lastpos=[];
+    geolocate.on('geolocate', function (l) {
+        // loc = [l.coords.longitude, l.coords.latitude]
+        if ((JSON.stringify(loc) == JSON.stringify(_lastpos))) {
+            // user didn't move
+            // console.log("same place");
+        } else {
+            // user moved to a new location
+            // console.log('the user is at', loc);
+            trigger_nearby_marker(loc, 10);
+            _lastpos = loc;
+        }
+    });
+
+    // get a point and a radius in meters, return any markers the point is within that radius from
+    function trigger_nearby_marker(user_location, within){
+        for (var i=0 ; i<POIS.length ; i++){
+            // calculate distance between user and POI
+            // if < distance toggle popup and quit
+            var poi = POIS[i];
+            var distance = turf.distance(user_location, poi.getLngLat().toArray(), 'kilometers');
+            distance = Math.round(distance * 1000); // convert to meters
+            // console.log('distance', distance, ' meters');
+            if (distance <= within && POIS[i].alreadyPlayed !== true) {
+                poi.togglePopup();
+                POIS[i].alreadyPlayed = true;
+                break;
+            }
+        }
+    }
+
     map.addControl(geolocate);
 
+
+    // setup Basemap switching
+    class BaseMapControl {
+        onAdd(map) {
+            this._map = map;
+            this._container = document.createElement('div');
+            this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group style-switcher style-switcher-satellite';
+            this._container.addEventListener('click', function (e) {
+                var curstyle = map.getStyle().name;
+                if (curstyle == 'Streets') {
+                    e.target.classList.remove('style-switcher-satellite');
+                    e.target.classList.add('style-switcher-streets');
+                    map.setStyle(STYLE.SAT);
+                } else {
+                    e.target.classList.remove('style-switcher-streets');
+                    e.target.classList.add('style-switcher-satellite');
+                    map.setStyle(STYLE.STREETS);
+                }
+            });
+            return this._container;
+        }
+
+
+        onRemove() {
+            this._container.parentNode.removeChild(this._container);
+            this._map = undefined;
+        }
+    }
+
+    map.addControl(new BaseMapControl(), 'bottom-left');
+
+
+    // UI logic
     map.on('load', function(e){
 
         // don't fly to user location on load
         // geolocate.trigger();
-
-        console.log(map)
 
         $.ajaxSetup({
             scriptCharset: "utf-8",
@@ -83,18 +120,17 @@ $(document).ready(function () {
         }).fail(function (e) {
             console.log(e);
         }).done(function(d){
+            // POIS = d.features;
             console.log(d);
             map.flyTo({
                 center: d.features[0].geometry.coordinates,
                 zoom: 8
             });
             d.features.forEach(function (f) {
-                render_point(f);
+                POIS.push(render_point(f));
             });        
         })
 
-        
-        
 
         // disable for now
         // geolocate.on('geolocate', (e) => {
@@ -115,7 +151,7 @@ $(document).ready(function () {
             var video_src = p.properties.youtube;
             // 'https://player.vimeo.com/video/'+ p.properties.vimeo +'?autoplay=1&title=0&byline=0&portrait=0'; //'https://player.vimeo.com/video/5922384?title=0&byline=0&portrait=0';
 
-            el = document.createElement('div');
+            var el = document.createElement('div');
             el.className = 'image_marker';
             el.style.backgroundImage = 'url('+ p.properties.image +')';
 
@@ -136,17 +172,14 @@ $(document).ready(function () {
                         });
                         $.magnificPopup.open({
                             "items": { 
-                                "src": video_src 
+                                "src": video_src
                             }, 
                             "type": "iframe"
                         });
                     })
             ).addTo(map);
+            return(marker);
         }
-
-        var basemap = new BaseMapControl();
-        map.addControl(basemap, 'bottom-left');
-
 
     });
 
@@ -179,4 +212,9 @@ $(document).ready(function () {
 
     })
 
-})
+
+    // simulate gps location change 
+    map.on('click', function(e) {
+        console.log('click at', e.lngLat);
+        trigger_nearby_marker(e.lngLat.toArray(), 1000);
+    })
