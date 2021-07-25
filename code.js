@@ -19,8 +19,8 @@ const STYLE = {
         style: STYLE.STREETS,
         zoom: 10,
         center: [34.102, 30.935],
-        customAttribution: "v25.07.2",
-        maxBounds: [[34, 29], [36, 33]]
+        customAttribution: "v25.07.3",
+        maxBounds: [[34, 29], [36, 34]]
     });
 
     var POIS = [];

@@ -153,6 +153,21 @@
                     31.763908
                 ]
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "נקודת בדיקה לארנון",
+                "youtube": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "image": "./data/img/arnon.png"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.324399,
+                    33.031677
+                ]
+            }
         }
     ]
 }
