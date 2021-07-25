@@ -162,3 +162,7 @@ html, body {
 .style-switcher-streets {
   background-image: url("./assets/img/streets.png");
 }
+
+.maplibregl-ctrl-logo {
+  display: none !important;
+}
