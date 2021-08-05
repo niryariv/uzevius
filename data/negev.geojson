@@ -123,51 +123,6 @@
                     31.046843
                 ]
             }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "title": "נוף 48 ערד",
-                "youtube": "https://www.youtube.com/watch?v=peEzcvnG-Mw",
-                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/PikiWiki_Israel_48979_Geography_of_Israel.jpg/320px-PikiWiki_Israel_48979_Geography_of_Israel.jpg"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    35.222948491573334,
-                    31.256324969953184
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "title": "נקודת בדיקה לאורי",
-                "youtube": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                "image": "./data/img/minsker.png"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    35.213394,
-                    31.763908
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "title": "נקודת בדיקה לארנון",
-                "youtube": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                "image": "./data/img/arnon.png"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    35.324399,
-                    33.031677
-                ]
-            }
         }
     ]
 }
