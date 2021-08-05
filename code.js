@@ -3,6 +3,14 @@ const STYLE = {
     'SAT': 'mapbox://styles/niryariv/cjamccmte0z492so572ynsqt1'//https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx'
 }
 
+const ACTIVATION_RADIUS = 10; //meters
+const DEFAULT_CENTER    =[34.102, 30.935];
+const DEFAULT_ZOOM      = 10;
+const TRIGGER_GPS       = false;
+
+const POI_FILE      = "./data/negev.geojson";
+const ROUTE_FILE    = "./data/negev_route.geojson";
+
 
 // $(document).ready(function () {
 
@@ -17,13 +25,14 @@ const STYLE = {
     var map = new maplibregl.Map({
         container: 'map',
         style: STYLE.STREETS,
-        zoom: 10,
-        center: [34.102, 30.935],
+        zoom: DEFAULT_ZOOM,
+        center: DEFAULT_CENTER,
         customAttribution: "v25.07.3",
         maxBounds: [[34, 29], [36, 34]]
     });
 
     var POIS = [];
+    // var CURRENT_POI = -1;
 
     
     // setup geolocation UI
@@ -65,10 +74,21 @@ const STYLE = {
             if (distance <= within && POIS[i].alreadyPlayed !== true) {
                 poi.togglePopup();
                 POIS[i].alreadyPlayed = true;
+                // set_navigation_to(POIS[i+1]);
                 break;
             }
         }
     }
+
+    function set_navigation_to(poi) {
+        console.log("set navigation to ", poi);
+        loc = poi.getLngLat();
+        var nav_link = "https://www.waze.com/ul?ll="+loc.lat+"%2C"+loc.lng+"&navigate=yes&zoom=15";
+        // var navlink = "https://www.waze.com/ul?q="+poi.
+        $("#navlink").attr("href", nav_link);
+        $("#next_poi").html(poi.title);
+    }
+
 
     map.addControl(geolocate);
 
@@ -107,28 +127,34 @@ const STYLE = {
     // UI logic
     map.on('load', function(e){
 
-        // don't fly to user location on load
-        // geolocate.trigger();
+        if (TRIGGER_GPS) { 
+            geolocate.trigger();
+        }
+
 
         $.ajaxSetup({
             scriptCharset: "utf-8",
             contentType: "application/json; charset=utf-8"
         });
 
-        $.getJSON("./data/negev.geojson", function(e) {
+        $.getJSON(POI_FILE, function(e) {
             console.log("loaded");
         }).fail(function (e) {
-            console.log(e);
+            console.log('FAILED TO LOAD: ' + POI_FILE, e);
         }).done(function(d){
-            // POIS = d.features;
-            console.log(d);
             map.flyTo({
                 center: d.features[0].geometry.coordinates,
                 zoom: 8
-            });
+            })
+
+            var id = 0;
             d.features.forEach(function (f) {
-                POIS.push(render_point(f));
-            });        
+                POIS[id] = render_point(f, id);
+                POIS[id].title = f.properties.title;
+                id++;
+            })
+            
+            set_navigation_to(POIS[0]);
         })
 
 
@@ -142,13 +168,14 @@ const STYLE = {
         // });
 
 
-        function render_point(p){
+        function render_point(p, id){
             // console.log(p);
             var lnglat = p.geometry.coordinates;
             var rotation = 0; // ignore rotation for images p.properties.rotation || 0;
             var color = p.properties.color || '#bbdaf9';
             var title = p.properties.title;
             var video_src = p.properties.youtube;
+
             // 'https://player.vimeo.com/video/'+ p.properties.vimeo +'?autoplay=1&title=0&byline=0&portrait=0'; //'https://player.vimeo.com/video/5922384?title=0&byline=0&portrait=0';
 
             var el = document.createElement('div');
@@ -165,7 +192,7 @@ const STYLE = {
                     .setMaxWidth('fit-content')
                     .setHTML(title)
                     .on('open', function(currentFeature){
-                        console.log(currentFeature)
+                        console.log("currentFeature", currentFeature);
                         map.flyTo({
                             center: currentFeature.target.getLngLat(),
                             zoom: 15
@@ -176,6 +203,7 @@ const STYLE = {
                             }, 
                             "type": "iframe"
                         });
+                        set_navigation_to(POIS[id+1]);
                     })
             ).addTo(map);
             return(marker);
@@ -183,13 +211,19 @@ const STYLE = {
 
     });
 
+    // // catch popup events
+    // $('.image_marker').on('mfpOpen', function(e) {
+    //     console.log('Popup opened', $.magnificPopup.instance);
+    // });
+
+
 
     // Redraw layers when changing basemap
     map.on('styledata', function(e){
         if (typeof map.getSource('route') === 'undefined') {
             map.addSource('route', {
                 type: "geojson",
-                data: "./data/negev_route.geojson"
+                data: ROUTE_FILE
             })
         }
         
