@@ -223,6 +223,8 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
             var el = document.createElement('div');
             el.className = 'image_marker';
             el.style.backgroundImage = 'url('+ p.properties.image +')';
+            el.style.zIndex = 1000-id;
+            el.appendChild(document.createTextNode(id+1));
 
             var marker = new maplibregl.Marker({ element: el, color: color, rotation: rotation })
                 .setLngLat(lnglat)
