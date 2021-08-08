@@ -1,4 +1,4 @@
-const VERSION = "v08.08.1";
+const VERSION = "v08.08.2";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -34,8 +34,6 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
     });
 
     var POIS = [];
-    // var CURRENT_POI = -1;
-
 
     map.addControl(
         new maplibregl.ScaleControl({
@@ -147,13 +145,33 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
 
     map.addControl(new BaseMapControl(), 'bottom-left');
 
-
+    
     // UI logic
     map.on('load', function(e){
 
         if (TRIGGER_GPS) { 
             geolocate.trigger();
         }
+
+        // add parking icons
+        map.loadImage('./assets/img/parking.png', function (error, image) {
+            if (error) throw error;
+            map.addImage('parking', image);
+        });
+
+        map.addSource('parking', {
+            type: 'geojson',
+            data: './data/parking.geojson'
+        })
+        
+        map.addLayer({
+            'id': 'parking',
+            'type': 'symbol',
+            'source': 'parking',
+            'layout': {
+                'icon-image': 'parking',
+            }
+        })
 
 
         $.ajaxSetup({
