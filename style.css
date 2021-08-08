@@ -12,7 +12,7 @@ html, body {
     left: 0;
 }
 #info {
-    display: block;
+    display: none;
     position: relative;
     margin: 0px auto;
     max-width: 70%;
