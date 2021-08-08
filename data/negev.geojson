@@ -21,7 +21,8 @@
             "properties": {
                 "title": "אנדרטת הקומנדו הצרפתי",
                 "youtube": "https://www.youtube.com/watch?v=sA1wUGSs_2I",
-                "image": "./data/img/commando_monument.jpg"
+                "image": "./data/img/commando_monument.jpg",
+                "activation_radius": 20
             },
             "geometry": {
                 "type": "Point",
@@ -51,7 +52,8 @@
             "properties": {
                 "title": "צומת אהלים",
                 "youtube": "https://www.youtube.com/watch?v=5OIM3lFYNiE",
-                "image": "./data/img/ohalim.png"
+                "image": "./data/img/ohalim.png",
+                "activation_radius": 50
             },
             "geometry": {
                 "type": "Point",
@@ -96,6 +98,7 @@
         {
             "type": "Feature",
             "properties": {
+                "hide_nav": true,
                 "title": "גשר הרכבת הטורקי",
                 "rotation": 180,
                 "youtube": "https://www.youtube.com/watch?v=vwBf-5Jzp3c",

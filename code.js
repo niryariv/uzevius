@@ -1,11 +1,13 @@
+const VERSION = "v08.08.1";
+
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
     'SAT': 'mapbox://styles/niryariv/cjamccmte0z492so572ynsqt1'//https://api.maptiler.com/maps/hybrid/style.json?key=cgzcpq242p8x5zNNGxpx'
 }
 
-const ACTIVATION_RADIUS = 10; //meters
+const DEFAULT_ACTIVATION_RADIUS = 10; //meters
 const DEFAULT_CENTER    =[34.102, 30.935];
-const DEFAULT_ZOOM      = 10;
+const DEFAULT_ZOOM      = 12;
 const TRIGGER_GPS       = false;
 
 const POI_FILE      = "./data/negev.geojson";
@@ -27,13 +29,28 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
         style: STYLE.STREETS,
         zoom: DEFAULT_ZOOM,
         center: DEFAULT_CENTER,
-        customAttribution: "v25.07.3",
+        attributionControl: false,
         maxBounds: [[34, 29], [36, 34]]
     });
 
     var POIS = [];
     // var CURRENT_POI = -1;
 
+
+    map.addControl(
+        new maplibregl.ScaleControl({
+            maxWidth: 80,
+            unit: 'metric'
+        }),
+        'bottom-right'
+    );
+    
+    map.addControl(
+        new maplibregl.AttributionControl({
+            customAttribution: VERSION,
+            compact: true
+        })
+    );
     
     // setup geolocation UI
     var geolocate = new maplibregl.GeolocateControl({
@@ -57,24 +74,26 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
         } else {
             // user moved to a new location
             // console.log('the user is at', loc);
-            trigger_nearby_marker(loc, 5);
+            trigger_nearby_marker(loc);
             _lastpos = loc;
         }
     });
 
     // get a point and a radius in meters, return any markers the point is within that radius from
-    function trigger_nearby_marker(user_location, within){
+    function trigger_nearby_marker(user_location){
         for (var i=0 ; i<POIS.length ; i++){
-            // calculate distance between user and POI
-            // if < distance toggle popup and quit
             var poi = POIS[i];
+
+            // calculate distance between user and POI
             var distance = turf.distance(user_location, poi.getLngLat().toArray(), 'kilometers');
             distance = Math.round(distance * 1000); // convert to meters
-            // console.log('distance', distance, ' meters');
-            if (distance <= within && POIS[i].alreadyPlayed !== true) {
+
+            // if user within activation radius of a POI that didn't play already, play video
+            var activation_radius = poi.properties.activation_radius || DEFAULT_ACTIVATION_RADIUS;
+            console.log(poi, activation_radius);
+            if (distance <= activation_radius && POIS[i].alreadyPlayed !== true) {
                 poi.togglePopup();
                 POIS[i].alreadyPlayed = true;
-                // set_navigation_to(POIS[i+1]);
                 break;
             }
         }
@@ -82,11 +101,16 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
 
     function set_navigation_to(poi) {
         console.log("set navigation to ", poi);
-        loc = poi.getLngLat();
-        var nav_link = "https://www.waze.com/ul?ll="+loc.lat+"%2C"+loc.lng+"&navigate=yes&zoom=15";
-        // var navlink = "https://www.waze.com/ul?q="+poi.
-        $("#navlink").attr("href", nav_link);
-        $("#next_poi").html(poi.title);
+        if (typeof poi === "undefined" || poi.properties.hide_nav === true) {
+            $("#info").hide();
+        } else {
+            $("#info").show();
+            loc = poi.getLngLat();
+            var nav_link = "https://www.waze.com/ul?ll="+loc.lat+"%2C"+loc.lng+"&navigate=yes&zoom=15";
+            // var navlink = "https://www.waze.com/ul?q="+poi.
+            $("#navlink").attr("href", nav_link);
+            $("#next_poi").html(poi.properties.title);
+        }
     }
 
 
@@ -144,13 +168,13 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
         }).done(function(d){
             map.flyTo({
                 center: d.features[0].geometry.coordinates,
-                zoom: 8
+                zoom: DEFAULT_ZOOM
             })
 
             var id = 0;
             d.features.forEach(function (f) {
                 POIS[id] = render_point(f, id);
-                POIS[id].title = f.properties.title;
+                POIS[id].properties = f.properties;
                 id++;
             })
             
@@ -211,12 +235,6 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
 
     });
 
-    // // catch popup events
-    // $('.image_marker').on('mfpOpen', function(e) {
-    //     console.log('Popup opened', $.magnificPopup.instance);
-    // });
-
-
 
     // Redraw layers when changing basemap
     map.on('styledata', function(e){
@@ -250,5 +268,5 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
     // simulate gps location change 
     map.on('click', function(e) {
         console.log('click at', e.lngLat);
-        trigger_nearby_marker(e.lngLat.toArray(), 1000);
+        trigger_nearby_marker(e.lngLat.toArray());
     })
