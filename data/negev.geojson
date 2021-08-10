@@ -21,7 +21,7 @@
             "properties": {
                 "title": "אנדרטת הקומנדו הצרפתי",
                 "youtube": "https://www.youtube.com/watch?v=sA1wUGSs_2I",
-                "image": "./data/img/commando_monument.jpg",
+                "image": "./data/img/commando_monument.jpg"
             },
             "geometry": {
                 "type": "Point",

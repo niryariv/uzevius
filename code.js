@@ -7,7 +7,7 @@ const STYLE = {
 
 const DEFAULT_ACTIVATION_RADIUS = 10; //meters
 const DEFAULT_CENTER    =[34.102, 30.935];
-const DEFAULT_ZOOM      = 12;
+const DEFAULT_ZOOM      = 9;
 const TRIGGER_GPS       = false;
 
 const POI_FILE      = "./data/negev.geojson";
