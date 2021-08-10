@@ -95,7 +95,11 @@ html, body {
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
-/*
+.mfp-content {
+  max-height: 90%;
+}
+
+/* 
 // Modal https://codepen.io/thomgriggs/pen/EbGAK
 .modaloverlay{
   background:rgba(0,0,0,0.8);
@@ -151,7 +155,7 @@ html, body {
     z-index: 1;
   }
 }
-*/ 
+ */
 
 .style-switcher {
   height: 50px; 

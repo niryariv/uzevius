@@ -245,7 +245,8 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
                             "items": { 
                                 "src": video_src
                             }, 
-                            "type": "iframe"
+                            "type": "iframe",
+                            "fixedContentPos": true
                         });
                         set_navigation_to(POIS[id+1]);
                     })
