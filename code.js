@@ -6,12 +6,15 @@ const STYLE = {
 }
 
 const DEFAULT_ACTIVATION_RADIUS = 10; //meters
-const DEFAULT_CENTER    =[34.102, 30.935];
-const DEFAULT_ZOOM      = 9;
-const TRIGGER_GPS       = false;
+const DEFAULT_CENTER    = [ 34.7633, 31.1182 ];
+const DEFAULT_ZOOM      = 10;
+
+const TRIGGER_GPS_ON_START       = false;
+const FLY_TO_ON_START           = false;
 
 const POI_FILE      = "./data/negev.geojson";
 const ROUTE_FILE    = "./data/negev_route.geojson";
+
 
 
 // $(document).ready(function () {
@@ -149,7 +152,7 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
     // UI logic
     map.on('load', function(e){
 
-        if (TRIGGER_GPS) { 
+        if (TRIGGER_GPS_ON_START) {
             geolocate.trigger();
         }
 
@@ -184,11 +187,13 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
         }).fail(function (e) {
             console.log('FAILED TO LOAD: ' + POI_FILE, e);
         }).done(function(d){
-            map.flyTo({
-                center: d.features[0].geometry.coordinates,
-                zoom: DEFAULT_ZOOM
-            })
-
+            if (FLY_TO_ON_START) {
+                map.flyTo({
+                    center: d.features[0].geometry.coordinates,
+                    zoom: DEFAULT_ZOOM
+                })
+            }
+            
             var id = 0;
             d.features.forEach(function (f) {
                 POIS[id] = render_point(f, id);
