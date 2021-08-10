@@ -1,4 +1,4 @@
-const VERSION = "v10.08.1";
+const VERSION = "v10.08.2";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -193,7 +193,7 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
                     zoom: DEFAULT_ZOOM
                 })
             }
-            
+
             var id = 0;
             d.features.forEach(function (f) {
                 POIS[id] = render_point(f, id);
