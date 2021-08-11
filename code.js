@@ -1,4 +1,4 @@
-const VERSION = "v10.08.2";
+const VERSION = "v11.08.1";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -252,7 +252,19 @@ const PARKING_FILE  = "./data/parking.geojson";
                                 "src": video_src
                             }, 
                             "type": "iframe",
-                            "fixedContentPos": true
+                            iframe: {
+                                markup: '<div class="mfp-iframe-scaler">' +
+                                    '<div class="mfp-close"></div>' +
+                                    '<iframe class="mfp-iframe" frameborder="0" allow="autoplay"></iframe>' +
+                                    '</div>',
+                                patterns: {
+                                    youtube: {
+                                        index: 'youtube.com/',
+                                        id: 'v=',
+                                        src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                                    }
+                                }
+                            }
                         });
                         set_navigation_to(POIS[id+1]);
                     })
