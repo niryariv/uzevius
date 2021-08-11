@@ -6,7 +6,8 @@
             "properties": {
                 "title": "אנדרטת חטיבת הנגב",
                 "youtube": "https://www.youtube.com/watch?v=Iu-yn8fMaFE",
-                "image": "./data/img/negev_brigade.jpg"
+                "image": "./data/img/negev_brigade.jpg",
+                "nav_to": [ 34.821966, 31.265984 ]
             },
             "geometry": {
                 "type": "Point",
@@ -36,7 +37,8 @@
             "properties": {
                 "title": "גן אלנבי",
                 "youtube": "https://www.youtube.com/watch?v=6Lzc7Npt_Ic",
-                "image": "./data/img/allenby.jpg"
+                "image": "./data/img/allenby.jpg",
+                "nav_to": [ 34.785986, 31.243332 ]
             },
             "geometry": {
                 "type": "Point",
@@ -52,7 +54,8 @@
                 "title": "מצפור טלי",
                 "rotation": 270,
                 "youtube": "https://www.youtube.com/watch?v=NDrBCVc9BXM",
-                "image": "./data/img/tali.jpg"
+                "image": "./data/img/tali.jpg",
+                "nav_to": [ 31.018429, 34.761084 ]
             },
             "geometry": {
                 "type": "Point",
@@ -68,7 +71,8 @@
                 "title": "מצפור הקומנדו הצרפתי",
                 "rotation": 180,
                 "youtube": "https://www.youtube.com/watch?v=OC8OJu7lla0",
-                "image": "./data/img/commando_lookout.jpg"
+                "image": "./data/img/commando_lookout.jpg",
+                "nav_to": [ 34.723433, 30.970880 ]
             },
             "geometry": {
                 "type": "Point",
@@ -85,7 +89,8 @@
                 "title": "גשר הרכבת הטורקי",
                 "rotation": 180,
                 "youtube": "https://www.youtube.com/watch?v=vwBf-5Jzp3c",
-                "image": "./data/img/bridge.png"
+                "image": "./data/img/bridge.png",
+                "nav_to": [ 34.708760, 30.969803 ]
             },
             "geometry": {
                 "type": "Point",
@@ -100,7 +105,8 @@
             "properties": {
                 "title": "בית העלמין הצבאי בקיבוץ רביבים",
                 "youtube": "https://www.youtube.com/watch?v=W9-NwkrTCqA",
-                "image": "./data/img/revivim.jpg"
+                "image": "./data/img/revivim.jpg",
+                "nav_to": [ 34.714812, 31.046947 ]
             },
             "geometry": {
                 "type": "Point",

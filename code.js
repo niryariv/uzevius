@@ -1,4 +1,4 @@
-const VERSION = "v11.08.1";
+const VERSION = "v11.08.2";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -107,7 +107,12 @@ const PARKING_FILE  = "./data/parking.geojson";
             $("#info").hide();
         } else {
             $("#info").show();
-            loc = poi.getLngLat();
+            if (typeof poi.properties.nav_to !== "undefined"){
+                loc = { lng: poi.properties.nav_to[0], lat: poi.properties.nav_to[1] };
+            } else { 
+                loc = poi.getLngLat();
+            }
+            console.log(loc);
             var nav_link = "https://www.waze.com/ul?ll="+loc.lat+"%2C"+loc.lng+"&navigate=yes&zoom=15";
             // var navlink = "https://www.waze.com/ul?q="+poi.
             $("#navlink").attr("href", nav_link);
