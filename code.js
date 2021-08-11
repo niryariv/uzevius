@@ -1,4 +1,4 @@
-const VERSION = "v11.08.2";
+const VERSION = "v11.08.3";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -103,20 +103,27 @@ const PARKING_FILE  = "./data/parking.geojson";
 
     function set_navigation_to(poi) {
         console.log("set navigation to ", poi);
-        if (typeof poi === "undefined" || poi.properties.hide_nav === true) {
-            $("#info").hide();
+        if (typeof poi === "undefined") {
+                $("#info").hide();
+                return false;
+        } 
+        
+        $("#info").show();
+        $("#next_poi").html(poi.properties.title);
+
+        if (poi.properties.hide_nav) {
+            $("#navlink").hide();
         } else {
-            $("#info").show();
-            if (typeof poi.properties.nav_to !== "undefined"){
+            if (typeof poi.properties.nav_to !== "undefined") {
                 loc = { lng: poi.properties.nav_to[0], lat: poi.properties.nav_to[1] };
-            } else { 
+            } else {
                 loc = poi.getLngLat();
             }
             console.log(loc);
-            var nav_link = "https://www.waze.com/ul?ll="+loc.lat+"%2C"+loc.lng+"&navigate=yes&zoom=15";
+            var nav_link = "https://www.waze.com/ul?ll=" + loc.lat + "%2C" + loc.lng + "&navigate=yes&zoom=15";
             // var navlink = "https://www.waze.com/ul?q="+poi.
             $("#navlink").attr("href", nav_link);
-            $("#next_poi").html(poi.properties.title);
+            $("#navlink").show();
         }
     }
 
