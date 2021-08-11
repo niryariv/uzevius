@@ -1,4 +1,4 @@
-const VERSION = "v11.08.3";
+const VERSION = "v11.08.4";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -262,7 +262,7 @@ const PARKING_FILE  = "./data/parking.geojson";
                             iframe: {
                                 markup: '<div class="mfp-iframe-scaler">' +
                                     '<div class="mfp-close"></div>' +
-                                    '<iframe class="mfp-iframe" frameborder="0" allow="autoplay"></iframe>' +
+                                    '<iframe class="mfp-iframe" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>' +
                                     '</div>',
                                 patterns: {
                                     youtube: {
