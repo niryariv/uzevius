@@ -162,11 +162,6 @@ const PARKING_FILE  = "./data/parking.geojson";
             geolocate.trigger();
         }
 
-        // add parking icons
-        map.loadImage('./assets/img/parking.png', function (error, image) {
-            if (error) throw error;
-            map.addImage('parking', image);
-        });
 
         // map.addSource('parking', {
         //     type: 'geojson',
@@ -305,6 +300,12 @@ const PARKING_FILE  = "./data/parking.geojson";
                 }
             })
         }
+
+        // add parking icons
+        map.loadImage('./assets/img/parking.png', function (error, image) {
+            if (error) throw error;
+            map.addImage('parking', image);
+        });
 
         if (typeof map.getSource('parking') === 'undefined') {
             map.addSource('parking', {
