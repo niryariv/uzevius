@@ -14,6 +14,7 @@ const FLY_TO_ON_START           = false;
 
 const POI_FILE      = "./data/negev.geojson";
 const ROUTE_FILE    = "./data/negev_route.geojson";
+const PARKING_FILE  = "./data/parking.geojson";
 
 
 
@@ -162,19 +163,19 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
             map.addImage('parking', image);
         });
 
-        map.addSource('parking', {
-            type: 'geojson',
-            data: './data/parking.geojson'
-        })
+        // map.addSource('parking', {
+        //     type: 'geojson',
+        //     data: './data/parking.geojson'
+        // })
         
-        map.addLayer({
-            'id': 'parking',
-            'type': 'symbol',
-            'source': 'parking',
-            'layout': {
-                'icon-image': 'parking',
-            }
-        })
+        // map.addLayer({
+        //     'id': 'parking',
+        //     'type': 'symbol',
+        //     'source': 'parking',
+        //     'layout': {
+        //         'icon-image': 'parking',
+        //     }
+        // })
 
 
         $.ajaxSetup({
@@ -284,6 +285,24 @@ const ROUTE_FILE    = "./data/negev_route.geojson";
                 layout: {
                     "line-cap": "round",
                     "line-join": "round"
+                }
+            })
+        }
+
+        if (typeof map.getSource('parking') === 'undefined') {
+            map.addSource('parking', {
+                type: 'geojson',
+                data: PARKING_FILE
+            })
+        }
+
+        if (typeof map.getLayer('parking') === 'undefined') {
+            map.addLayer({
+                'id': 'parking',
+                'type': 'symbol',
+                'source': 'parking',
+                'layout': {
+                    'icon-image': 'parking',
                 }
             })
         }

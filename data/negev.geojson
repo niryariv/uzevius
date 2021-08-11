@@ -49,22 +49,6 @@
         {
             "type": "Feature",
             "properties": {
-                "title": "צומת אהלים",
-                "youtube": "https://www.youtube.com/watch?v=5OIM3lFYNiE",
-                "image": "./data/img/ohalim.png",
-                "activation_radius": 50
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    34.805540,
-                    31.191336
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "title": "מצפור טלי",
                 "rotation": 270,
                 "youtube": "https://www.youtube.com/watch?v=NDrBCVc9BXM",
