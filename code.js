@@ -1,4 +1,4 @@
-const VERSION = "v11.08.4";
+const VERSION = "v18.08.1";
 
 const STYLE = {
     'STREETS' : 'https://api.maptiler.com/maps/streets/style.json?key=cgzcpq242p8x5zNNGxpx',
@@ -236,7 +236,7 @@ const PARKING_FILE  = "./data/parking.geojson";
             var el = document.createElement('div');
             el.className = 'image_marker';
             el.style.backgroundImage = 'url('+ p.properties.image +')';
-            el.style.zIndex = 1000-id;
+            el.style.zIndex = 100-id;
             el.appendChild(document.createTextNode(id+1));
 
             var marker = new maplibregl.Marker({ element: el, color: color, rotation: rotation })
